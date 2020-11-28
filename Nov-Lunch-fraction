@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector> 
+using namespace std ; 
+#define ll long long 
+bool pairs (ll a, ll b) {
+    ll k = b/a ; 
+   // cout << k << a << b << endl ; 
+    if (k == 1) {
+        ll r = b % a ; 
+        if (r == 1) 
+        return 1 ; 
+        if (r == 0) 
+        return 0 ; 
+        else {
+            if (a%r == 0 && b%r == 0) 
+            return pairs(a/r,b/r); 
+            else 
+            return 0 ; 
+        }
+    }
+    else
+    return 0 ; 
+    
+    return 0; 
+}
+
+
+
+
+
+ll solve(ll n){
+   ll count = 0 ; 
+   for (ll i=1; i<=n ; i++) {
+       for(ll j=i+1; j<=n ; j++) {
+          // cout << i*(j+1) << j*(i+1) << " num" << endl ; 
+           if (pairs(i*(j+1),j*(i+1))) {
+          // cout << i << j << endl ; 
+           count++ ; 
+           }
+       }
+   }
+   return count ; 
+}
+
+int main() {
+    ll t ; 
+    cin >> t ; 
+    cout << solve(t) ; 
+    return 0;
+}
